@@ -3,7 +3,7 @@ from cars.views import get_car_with_filter,CarList
 
 urlpatterns = [
 
-    path('list/',get_car_with_filter),
-    path('listView/',CarList.as_view())
+    path('list/',CarList.as_view()),
+    path('listMethod/',get_car_with_filter),
 
 ]

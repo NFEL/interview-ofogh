@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r_@u(hya1er@bdy9ma7@pb1=w6xs4mh(m$q)f9@_jvc&ekrh1s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = eval(os.getenv('DEBUG')or 'True')
+DEBUG = eval(os.getenv('DEBUG') or 'True')
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,8 +38,10 @@ INSTALLED_APPS = list({
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'rest_framework',
+    'django_filters',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,7 +52,7 @@ INSTALLED_APPS = list({
     'user',
     'cars',
     'road'
-    
+
 })
 
 MIDDLEWARE = [
@@ -87,14 +89,14 @@ AUTH_USER_MODEL = 'user.User'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default':{
+    'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': os.getenv('DB_NAME') or 'postgres', 
-        'USER': os.getenv('DB_USER') or   'postgres', 
-        'PASSWORD': os.getenv('DB_PASS') or  'password',
-        'HOST': os.getenv('DB_HOST') or  '127.0.0.1', 
-        'PORT': os.getenv('DB_PORT') or  '5432',        
-    
+        'NAME': os.getenv('DB_NAME') or 'postgres',
+        'USER': os.getenv('DB_USER') or 'postgres',
+        'PASSWORD': os.getenv('DB_PASS') or 'password',
+        'HOST': os.getenv('DB_HOST') or '127.0.0.1',
+        'PORT': os.getenv('DB_PORT') or '5432',
+
     },
     # 'sqllite': {
     #     'ENGINE': 'django.contrib.backends.sqlite3',
@@ -119,9 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
- 
+
 REST_FRAMEWORK = {
-    
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'

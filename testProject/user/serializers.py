@@ -29,3 +29,15 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+class LimitedUserSerializer(serializers.ModelSerializer):
+    ...
+    class Meta:
+        model = User
+        fields = ['username','national_code']
+        
+class LimitedUserSerializerInfo(serializers.ModelSerializer):
+    ...
+    class Meta:
+        model = User
+        fields = ['username','national_code','total_toll_paid']
+        

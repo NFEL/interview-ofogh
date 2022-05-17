@@ -1,10 +1,8 @@
 import json
 
 from django.contrib.auth import get_user_model
-from cars.models import Car, Color
-from road.models import Road, TollStation, Travel
-# from user.models import User
-from django.contrib.gis.geos import MultiLineString
+from cars.models import Car
+from road.models import Road, TollStation
 
 User = get_user_model()
 

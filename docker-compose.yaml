@@ -1,0 +1,33 @@
+version: '3.2'
+services:
+  ofoghtestapi:
+    build:
+      context:  ./testProject
+    ports:
+      - 8001:8001
+    environment:
+      Debug: "True"
+      Port: 8001
+      DB_HOST: DB
+      DB_USER: postgres
+      DB_PASS: password
+      DB_PORT: 5432
+      DB_NAME: postgres
+    networks:
+      - OfoghTest
+
+  DB:
+    image: postgis/postgis:14-master
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432
+      - 5433:5433
+    networks:
+      - OfoghTest
+
+networks:
+  OfoghTest:
+    driver: bridge
